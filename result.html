@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Personalized Workout Plan</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #1f2937, #111827);
+    padding: 24px;
+    display: flex;
+    justify-content: center;
+  }
+  .wrap { width: 100%; max-width: 760px; }
+  .panel {
+    background: rgba(255,255,255,0.97);
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 20px;
+    box-shadow: 0 16px 32px rgba(0,0,0,0.3);
+  }
+  h1 { text-align: center; font-size: 1.5rem; color: #111827; margin-top: 0; }
+  h2 { font-size: 1.1rem; color: #1f2937; border-bottom: 2px solid #e5e7eb; padding-bottom: 8px; }
+  .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px; }
+  .info-grid p { margin: 4px 0; color: #374151; }
+  pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    background: #f3f4f6;
+    border-radius: 10px;
+    padding: 16px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.92rem;
+    color: #1f2937;
+    line-height: 1.5;
+  }
+  .tip-box {
+    background: #fef9c3;
+    border-radius: 10px;
+    padding: 16px;
+    color: #713f12;
+    font-size: 0.95rem;
+  }
+  form label { display: block; font-weight: 500; margin-top: 12px; margin-bottom: 6px; color: #374151; }
+  input, textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    font-family: inherit;
+    font-size: 0.95rem;
+  }
+  textarea { min-height: 80px; resize: vertical; }
+  button {
+    margin-top: 16px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    background: #2563eb;
+    color: #fff;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  button:hover { background: #1d4ed8; }
+  .success {
+    background: #dcfce7;
+    color: #166534;
+    padding: 14px;
+    border-radius: 10px;
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+  @media (max-width: 480px) {
+    .info-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="panel">
+    <h1>🏆 Your Personalized Workout Plan</h1>
+
+    {% if feedback_submitted %}
+    <div class="success">✅ Your plan has been updated based on your feedback!</div>
+    {% endif %}
+
+    <h2>User Information</h2>
+    <div class="info-grid">
+      <p><strong>Name:</strong> {{ username }}</p>
+      <p><strong>User ID:</strong> {{ user_id }}</p>
+      <p><strong>Age:</strong> {{ age }}</p>
+      <p><strong>Weight:</strong> {{ weight }} kg</p>
+      <p><strong>Goal:</strong> {{ goal }}</p>
+      <p><strong>Intensity:</strong> {{ intensity }}</p>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>Workout Plan</h2>
+    <pre>{{ workout_plan }}</pre>
+  </div>
+
+  <div class="panel">
+    <h2>💡 Nutrition Tip</h2>
+    <div class="tip-box">{{ nutrition_tip }}</div>
+  </div>
+
+  <div class="panel">
+    <h2>📝 Share Your Feedback</h2>
+    <form action="/submit-feedback" method="post">
+      <label for="user_id_fb">Your Unique User ID</label>
+      <input type="number" id="user_id_fb" name="user_id" value="{{ user_id }}" required>
+
+      <label for="feedback">Your Feedback</label>
+      <textarea id="feedback" name="feedback" placeholder="Let us know how we can improve your plan..." required></textarea>
+
+      <button type="submit">Submit Feedback</button>
+    </form>
+  </div>
+
+  <p style="text-align:center;"><a href="/" style="color:#93c5fd;">&larr; Back to home</a></p>
+</div>
+</body>
+</html>

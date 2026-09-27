@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FitBuddy - All Users & Workout Plans</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background: #111827;
+    padding: 24px;
+  }
+  h1 {
+    color: #f9fafb;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .table-wrap {
+    overflow-x: auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 16px 32px rgba(0,0,0,0.3);
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 900px;
+  }
+  th {
+    background: #2563eb;
+    color: #fff;
+    text-align: left;
+    padding: 10px 12px;
+    position: sticky;
+    top: 0;
+  }
+  td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #e5e7eb;
+    vertical-align: top;
+    font-size: 0.9rem;
+    color: #1f2937;
+  }
+  td pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    max-width: 320px;
+    max-height: 240px;
+    overflow-y: auto;
+    background: #f3f4f6;
+    padding: 8px;
+    border-radius: 6px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.82rem;
+    margin: 0;
+  }
+  tr:hover { background: #f9fafb; }
+</style>
+</head>
+<body>
+  <h1>📋 FitBuddy - All Users & Workout Plans</h1>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>User ID</th>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Weight (kg)</th>
+          <th>Goal</th>
+          <th>Intensity</th>
+          <th>Original Plan</th>
+          <th>Updated Plan</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for user in users %}
+        <tr>
+          <td>{{ user.id }}</td>
+          <td>{{ user.name }}</td>
+          <td>{{ user.age }}</td>
+          <td>{{ user.weight }}</td>
+          <td>{{ user.goal }}</td>
+          <td>{{ user.intensity }}</td>
+          <td><pre>{{ user.original_plan }}</pre></td>
+          <td><pre>{{ user.updated_plan }}</pre></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
